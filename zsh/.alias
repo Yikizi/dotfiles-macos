@@ -1,0 +1,6 @@
+alias ls='eza --icons=always --color=always'
+alias lsl='eza --icons=always --color=always --hyperlink'
+alias v='nvim'
+alias sal='set-alias'
+alias lg='lazygit'
+alias la='ls -la'

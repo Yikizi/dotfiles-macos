@@ -1,0 +1,5 @@
+[plugin]
+deps = [{ use = "Reledia/miller", rev = "40e0265" }, { use = "Reledia/hexyl", rev = "39d3d4e" }, { use = "dedukun/bookmarks", rev = "35da107" }, { use = "boydaihungst/restore", rev = "49c3e55" }, { use = "AnirudhG07/plugins-yazi:copy-file-contents", rev = "11167e1" }, { use = "Lil-Dank/lazygit", rev = "c82794f" }, { use = "grappas/wl-clipboard", rev = "c4edc4f" }]
+
+[flavor]
+deps = []

@@ -1,0 +1,13 @@
+keybinding:
+  files:
+    fetch: <disabled>
+customCommands:
+  - key: "f"
+    command: "git fetch && git fetch --prune"
+    context: "files"
+    stream: true
+    description: "Fetching from the remote"
+    loadingText: "Fetching"
+# os:
+#   edit: "NVIM_APPNAME=nvim-java nvim {{filename}}"
+#   editAtLine: "NVIM_APPNAME=nvim-java nvim +{{line}} {{filename}}"

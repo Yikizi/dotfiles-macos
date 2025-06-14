@@ -1,0 +1,106 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
+
+  - trigger: ";z"
+    replace: "~"
+  - trigger: ";x"
+    replace: "`"
+  - trigger: ";g"
+    replace: "```"
+  - trigger: ";e"
+    replace: "'"
+  - trigger: ";w"
+    replace: "-"
+  - trigger: ";;h"
+    replace: "--help"
+
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+
+  # But matches can also be dynamic:
+
+  # Print the current date
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%d/%m/%Y"
+
+  # Print the output of a shell command
+  - trigger: ":shell"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'Hello from your shell'"
+
+  - trigger: ";tg"
+    replace: "tgpt \"$|$\""
+
+  # elementaarsündmus
+
+  - trigger: ";;c"
+    form: |
+      ```[[lang]]
+      [[text]]
+      ```
+    form_fields:
+      text:
+        multiline: true
+
+  - trigger: ";form"
+    replace: "{{output}}"
+    vars:
+    - name: form1
+      type: form
+      params:
+        layout: "Capitalize [[name]]"
+    - name: output
+      type: shell
+      params:
+        cmd: "nu -c 'echo \"{{form1.name}}\" | str capitalize'"
+
+  - trigger: ":link"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo $(pbpaste) | grep -Eo 'https://[^ ]+'"
+
+  ###
+  ### VIM LIKE REGISTERS
+  ###
+
+  # READING
+  - regex: "~!(?P<register>[a-z])"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "cat ~/.registers/register_{{register}}"
+
+  # WRITING
+  - regex: "!~(?P<register>[a-z])"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "pbpaste > ~/.registers/register_{{register}}"
+
+  # And much more! For more information, visit the docs: https://espanso.org/docs/
