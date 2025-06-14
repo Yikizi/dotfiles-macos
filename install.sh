@@ -9,4 +9,5 @@ for module in $(cat .modules); do
   stow module
 done
 
+echo "Don't forget to decrypt and import Iterm2 settings"
 echo "All done"
