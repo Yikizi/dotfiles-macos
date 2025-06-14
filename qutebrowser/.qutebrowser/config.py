@@ -120,7 +120,7 @@ config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io
 # increased compatibility.  Note that the value read from JavaScript is
 # always the global value.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:136.0) Gecko/20100101 Firefox/136.0', 'https://accounts.google.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:136.0) Gecko/20100101 Firefox/139.0', 'https://accounts.google.com/*')
 
 # Load images automatically in web pages.
 # Type: Bool
@@ -129,6 +129,42 @@ config.set('content.images', True, 'chrome-devtools://*')
 # Load images automatically in web pages.
 # Type: Bool
 config.set('content.images', True, 'devtools://*')
+
+# Allow JavaScript to read from or write to the clipboard. With
+# QtWebEngine, writing the clipboard as response to a user interaction
+# is always allowed. On Qt < 6.8, the `ask` setting is equivalent to
+# `none` and permission needs to be granted manually via this setting.
+# Type: JSClipboardPermission
+# Valid values:
+#   - none: Disable access to clipboard.
+#   - access: Allow reading from and writing to the clipboard.
+#   - access-paste: Allow accessing the clipboard and pasting clipboard content.
+#   - ask: Prompt when requested (grants 'access-paste' permission).
+config.set('content.javascript.clipboard', 'access-paste', 'https://smithery.ai')
+
+# Allow JavaScript to read from or write to the clipboard. With
+# QtWebEngine, writing the clipboard as response to a user interaction
+# is always allowed. On Qt < 6.8, the `ask` setting is equivalent to
+# `none` and permission needs to be granted manually via this setting.
+# Type: JSClipboardPermission
+# Valid values:
+#   - none: Disable access to clipboard.
+#   - access: Allow reading from and writing to the clipboard.
+#   - access-paste: Allow accessing the clipboard and pasting clipboard content.
+#   - ask: Prompt when requested (grants 'access-paste' permission).
+config.set('content.javascript.clipboard', 'access-paste', 'https://terminaltrove.com')
+
+# Allow JavaScript to read from or write to the clipboard. With
+# QtWebEngine, writing the clipboard as response to a user interaction
+# is always allowed. On Qt < 6.8, the `ask` setting is equivalent to
+# `none` and permission needs to be granted manually via this setting.
+# Type: JSClipboardPermission
+# Valid values:
+#   - none: Disable access to clipboard.
+#   - access: Allow reading from and writing to the clipboard.
+#   - access-paste: Allow accessing the clipboard and pasting clipboard content.
+#   - ask: Prompt when requested (grants 'access-paste' permission).
+config.set('content.javascript.clipboard', 'access-paste', 'https://chatgpt.com')
 
 # Enable JavaScript.
 # Type: Bool
@@ -210,7 +246,13 @@ c.fonts.default_size = '16pt'
 # Bindings for normal mode
 config.bind(',d', 'config-cycle colors.webpage.darkmode.enabled')
 config.bind(',f', 'jseval document.activeElement.blur()')
+config.bind(',m', 'open -t https://monkeytype.com')
+config.bind(',t', 'open -t https://terminaltrove.com/new')
+config.bind('<Meta+n>', 'open -w')
+config.bind('<Meta+w>', 'q')
 config.bind('C-d', 'scroll-page 0 1')
 config.bind('C-g', 'jseval document.activeElement.blur()')
 config.bind('C-u', 'scroll-page 0 -1')
 config.bind('e', 'cmd-repeat 15 scroll down')
+config.bind('sdm', 'open -t https://moodle.taltech.ee/auth/oidc/?source=loginpage')
+config.bind('sdo', 'spawn --userscript script-runner.py /Users/mattias/.qutebrowser/metascripts/ ois-login')
