@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-echo "Installing brew packages"
-brew bundle
+which brew && brew bundle dump --file Brewfile.bak && brew bundle && echo "Installing brew packages"
+[[ $? != 0 ]] && echo "Homebrew installation not found"
 
 echo "Symlinking config modules"
 for module in $(cat .modules); do
