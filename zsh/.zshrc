@@ -123,5 +123,17 @@ zinit cdreplay -q
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
-fastfetch
-task
+# fastfetch
+# task
+
+alias claude="/Users/mattiaslinholm/.claude/local/claude"
+
+# bit
+case ":$PATH:" in
+  *":/Users/mattiaslinholm/bin:"*) ;;
+  *) export PATH="$PATH:/Users/mattiaslinholm/bin" ;;
+esac
+# bit end
+
+# opencode
+export PATH=/Users/mattiaslinholm/.opencode/bin:$PATH
