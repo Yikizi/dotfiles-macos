@@ -740,22 +740,6 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "b",
-                                    "modifiers": {
-                                        "mandatory": ["left_option"],
-                                        "optional": ["left_shift", "right_shift"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "b",
-                                        "modifiers": ["left_control", "right_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
                                     "key_code": "tab",
                                     "modifiers": {
                                         "mandatory": ["left_option"],

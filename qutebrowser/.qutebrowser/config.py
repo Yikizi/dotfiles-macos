@@ -166,6 +166,18 @@ config.set('content.javascript.clipboard', 'access-paste', 'https://terminaltrov
 #   - ask: Prompt when requested (grants 'access-paste' permission).
 config.set('content.javascript.clipboard', 'access-paste', 'https://chatgpt.com')
 
+# Allow JavaScript to read from or write to the clipboard. With
+# QtWebEngine, writing the clipboard as response to a user interaction
+# is always allowed. On Qt < 6.8, the `ask` setting is equivalent to
+# `none` and permission needs to be granted manually via this setting.
+# Type: JSClipboardPermission
+# Valid values:
+#   - none: Disable access to clipboard.
+#   - access: Allow reading from and writing to the clipboard.
+#   - access-paste: Allow accessing the clipboard and pasting clipboard content.
+#   - ask: Prompt when requested (grants 'access-paste' permission).
+config.set('content.javascript.clipboard', 'access-paste', 'https://dash.cloudflare.com')
+
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', True, 'chrome-devtools://*')
@@ -244,9 +256,12 @@ c.fonts.default_family = 'HackNFM-Regular'
 c.fonts.default_size = '16pt'
 
 # Bindings for normal mode
+config.bind(',c', 'open -t chatgpt.com')
 config.bind(',d', 'config-cycle colors.webpage.darkmode.enabled')
 config.bind(',f', 'jseval document.activeElement.blur()')
+config.bind(',g', 'open -t grok.com')
 config.bind(',m', 'open -t https://monkeytype.com')
+config.bind(',r', 'open -t https://grok.com')
 config.bind(',t', 'open -t https://terminaltrove.com/new')
 config.bind('<Meta+n>', 'open -w')
 config.bind('<Meta+w>', 'q')
@@ -254,5 +269,6 @@ config.bind('C-d', 'scroll-page 0 1')
 config.bind('C-g', 'jseval document.activeElement.blur()')
 config.bind('C-u', 'scroll-page 0 -1')
 config.bind('e', 'cmd-repeat 15 scroll down')
+config.bind('gc', 'tab-clone')
 config.bind('sdm', 'open -t https://moodle.taltech.ee/auth/oidc/?source=loginpage')
 config.bind('sdo', 'spawn --userscript script-runner.py /Users/mattias/.qutebrowser/metascripts/ ois-login')
