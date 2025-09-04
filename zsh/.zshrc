@@ -123,21 +123,30 @@ zinit cdreplay -q
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
-fastfetch
-task
-
 # Added by Windsurf
-export PATH="/Users/mattias/.codeium/windsurf/bin:$PATH"
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/mattias/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mattias/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/mattias/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mattias/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
 # opencode
-export PATH=/Users/mattias/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
 
-source /Users/mattias/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br
+
+alias claude="$HOME/.claude/local/claude"
+
+# bit
+case ":$PATH:" in
+  *":$HOME/bin:"*) ;;
+  *) export PATH="$PATH:$HOME/bin" ;;
+esac
+# bit end
+
+# opencode
+export PATH=$HOME/.opencode/bin:$PATH

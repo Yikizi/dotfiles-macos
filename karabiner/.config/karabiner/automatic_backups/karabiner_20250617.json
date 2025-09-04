@@ -740,22 +740,6 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "b",
-                                    "modifiers": {
-                                        "mandatory": ["left_option"],
-                                        "optional": ["left_shift", "right_shift"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "b",
-                                        "modifiers": ["left_control", "right_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
                                     "key_code": "tab",
                                     "modifiers": {
                                         "mandatory": ["left_option"],
@@ -940,16 +924,8 @@
                         "vendor_id": 5824
                     },
                     "ignore": false,
-                    "manipulate_caps_lock_led": false,
                     "mouse_flip_horizontal_wheel": true,
-                    "mouse_flip_vertical_wheel": true,
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "delete_forward" },
-                            "to": [{ "key_code": "non_us_backslash" }]
-                        }
-                    ],
-                    "treat_as_built_in_keyboard": true
+                    "mouse_flip_vertical_wheel": true
                 }
             ],
             "fn_function_keys": [
