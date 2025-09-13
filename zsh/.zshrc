@@ -42,13 +42,23 @@ function y() {
   # zle redisplay
 }
 
-zle -N y
-bindkey "^f" y
+source $HOME/.config/broot/launcher/bash/br
+
+function brr() {
+  br<$TTY
+}
+
+zle -N brr
+bindkey "^f" brr
 bindkey "^e" edit-command-line
 bindkey "^k" kill-line
 
 function set-alias {
   [[ $# -eq 2 ]] && echo "alias $1='$2'" >> $HOME/.alias
+}
+
+function mcd {
+  mkdir -p $1 && cd $1
 }
 
 function _git-status-widget {
@@ -126,14 +136,21 @@ eval "$(starship init zsh)"
 # fastfetch
 # task
 
-alias claude="/Users/mattiaslinholm/.claude/local/claude"
-
 # bit
 case ":$PATH:" in
-  *":/Users/mattiaslinholm/bin:"*) ;;
-  *) export PATH="$PATH:/Users/mattiaslinholm/bin" ;;
+  *":$HOME/bin:"*) ;;
+  *) export PATH="$PATH:$HOME/bin" ;;
 esac
 # bit end
 
 # opencode
-export PATH=/Users/mattiaslinholm/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
+export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
+export ZEPHYR_TOOLCHAIN_PATH=/opt/homebrew
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
