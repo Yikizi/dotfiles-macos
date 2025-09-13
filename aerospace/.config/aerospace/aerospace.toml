@@ -66,13 +66,14 @@ preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+
 [gaps]
-inner.horizontal = 10
-inner.vertical = 10
-outer.left = 10
-outer.bottom = 10
-outer.top = 10
-outer.right = 10
+inner.horizontal = 0
+inner.vertical = 0
+outer.left = 0
+outer.bottom = 0
+outer.top = 0
+outer.right = 0
 
 [exec]
 inherit-env-vars = true
@@ -169,7 +170,7 @@ alt-ctrl-7 = 'workspace 7'
 alt-ctrl-8 = 'workspace 8'
 alt-ctrl-9 = 'workspace 9'
 # alt-ctrl-a = 'workspace A' 
-alt-ctrl-b = 'move-node-to-monitor --wrap-around prev'
+alt-ctrl-b = 'mode browser'
 # alt-ctrl-c = 'workspace C'
 # alt-ctrl-d = 'workspace D'
 # alt-ctrl-e = 'workspace E'
@@ -185,7 +186,7 @@ alt-ctrl-b = 'move-node-to-monitor --wrap-around prev'
 # alt-ctrl-s = 'workspace S'
 # alt-ctrl-t = 'workspace T'
 # alt-ctrl-u = 'workspace U'
-# alt-ctrl-v = 'workspace V'
+alt-ctrl-v = 'move-node-to-monitor --wrap-around prev'
 # alt-ctrl-w = 'workspace W'
 # alt-ctrl-x = 'workspace X'
 # alt-ctrl-y = 'workspace Y'
@@ -301,6 +302,17 @@ alt-ctrl-shift-l = ['join-with right', 'mode main']
 down = 'volume down'
 up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
+
+[mode.browser.binding]
+esc = 'mode main'
+m = ['exec-and-forget qutebrowser ":open -w monkeytype.com"', 'mode main']
+g = ['exec-and-forget qutebrowser ":open -w grok.com"', 'mode main']
+c = ['exec-and-forget qutebrowser ":open chatgpt.com"', 'mode main']
+o = ['exec-and-forget qutebrowser ":open -w gemini.app"', 'mode main']
+t = [
+  'exec-and-forget qutebrowser ":open -w terminaltrove.com/new"',
+  'mode main',
+]
 
 
 [[on-window-detected]]

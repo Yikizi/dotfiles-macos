@@ -133,8 +133,23 @@ zinit cdreplay -q
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
-# fastfetch
-# task
+# Added by Windsurf
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# opencode
+export PATH=$HOME/.opencode/bin:$PATH
+
+source $HOME/.config/broot/launcher/bash/br
+
+alias claude="$HOME/.claude/local/claude"
 
 # bit
 case ":$PATH:" in
