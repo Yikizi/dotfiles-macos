@@ -10,11 +10,16 @@ export PATH=$GOPATH/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export JAVA_HOME='/opt/homebrew/opt/openjdk@23/'
 
+# export PROMPT=" %U%h%u %(?.%F{green}%?%f.%F{red}%?%f) %F{blue}%n@%m%f %B%~%b %F{yellow}%D{%b%e %a} %T%f %F{#008000}$>%f "
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # history improvements
 setopt append_history inc_append_history share_history hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_ignore_dups # better history
 # setopt auto_menu menu_complete
+setopt auto_pushd
+setopt multios
+setopt pushd_ignore_dups
 setopt autocd
 setopt no_case_glob no_case_match
 setopt globdots
@@ -29,6 +34,33 @@ HISTCONTROL=ignoreboth
 HISTDUP=erase
 
 source <(fzf --zsh)
+
+function append_pipe() {
+  BUFFER="${BUFFER} | "
+  CURSOR=${#BUFFER}
+}
+zle -N append_pipe
+bindkey '^P' append_pipe
+
+function command_not_found_handler {
+  echo "Did you mean any of these?"
+  brew search "$1"
+  return 127
+}
+
+function dstack() {
+  dirs -v
+  echo "Where do you want to go?"
+  read num
+  [[ -n "$num" ]] && cd +$num
+}
+alias ds=dstack
+
+function cdmenu() {
+    select dir in $(dirs -lp); do
+        [[ -n "$dir" ]] && cd "$dir" && break
+    done
+}
 
 # binds
 bindkey -v
@@ -148,8 +180,6 @@ if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/D
 export PATH=$HOME/.opencode/bin:$PATH
 
 source $HOME/.config/broot/launcher/bash/br
-
-alias claude="$HOME/.claude/local/claude"
 
 # bit
 case ":$PATH:" in
