@@ -5,39 +5,6 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Left cmd when tapped act as f18",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_command",
-                                    "modifiers": {}
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_command",
-                                        "lazy": true
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "f18" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "right_command",
-                                    "modifiers": {}
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_command",
-                                        "lazy": true
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "f18" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Fix alt bindings for discord",
                         "manipulators": [
                             {

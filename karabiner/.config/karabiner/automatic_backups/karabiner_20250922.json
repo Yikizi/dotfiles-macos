@@ -20,20 +20,6 @@
                                 ],
                                 "to_if_alone": [{ "key_code": "f18" }],
                                 "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "right_command",
-                                    "modifiers": {}
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_command",
-                                        "lazy": true
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "f18" }],
-                                "type": "basic"
                             }
                         ]
                     },
