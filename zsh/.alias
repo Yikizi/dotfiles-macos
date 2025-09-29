@@ -10,3 +10,4 @@ alias yay='brew update && brew upgrade'
 alias tpanes="tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} - #{pane_current_command} - #{b:pane_current_path}'"
 alias ae='aerospace'
 alias c='claude'
+alias lsr='ls --sort=accessed --reverse'

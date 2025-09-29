@@ -134,7 +134,7 @@ alt-ctrl-e = 'layout v_accordion'
 alt-ctrl-a = 'layout h_tiles'
 alt-ctrl-d = 'layout v_tiles'
 alt-ctrl-n = 'join-with left'
-# alt-ctrl-m = 'join-with right'
+alt-ctrl-m = 'mode monitor'
 alt-ctrl-shift-i = 'macos-native-minimize'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
@@ -238,6 +238,49 @@ alt-ctrl-m = 'mode oneshot'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+
+[mode.monitor.binding]
+
+esc = 'mode main'
+
+h = 'focus-monitor left --wrap-around'
+j = 'focus-monitor down --wrap-around'
+k = 'focus-monitor up --wrap-around'
+l = 'focus-monitor right --wrap-around'
+
+t = ['''exec-and-forget osascript -e '
+tell application "Iterm2" to create window with default profile'
+''', 'mode main']
+
+g = ['''exec-and-forget osascript -e '
+tell application "Google Chrome" to make new window'
+''', 'mode main']
+
+shift-h = 'move-node-to-monitor left --focus-follows-window --wrap-around'
+shift-j = 'move-node-to-monitor down --focus-follows-window --wrap-around'
+shift-k = 'move-node-to-monitor up --focus-follows-window --wrap-around'
+shift-l = 'move-node-to-monitor right --focus-follows-window --wrap-around'
+
+1 = ['focus-monitor 1', 'mode main']
+2 = ['focus-monitor 2', 'mode main']
+3 = ['focus-monitor 3', 'mode main']
+4 = ['focus-monitor 4', 'mode main']
+5 = ['focus-monitor 5', 'mode main']
+6 = ['focus-monitor 6', 'mode main']
+7 = ['focus-monitor 7', 'mode main']
+8 = ['focus-monitor 8', 'mode main']
+9 = ['focus-monitor 9', 'mode main']
+
+shift-1 = 'move-node-to-monitor 1'
+shift-2 = 'move-node-to-monitor 2'
+shift-3 = 'move-node-to-monitor 3'
+shift-4 = 'move-node-to-monitor 4'
+shift-5 = 'move-node-to-monitor 5'
+shift-6 = 'move-node-to-monitor 6'
+shift-7 = 'move-node-to-monitor 7'
+shift-8 = 'move-node-to-monitor 8'
+shift-9 = 'move-node-to-monitor 9'
+
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout

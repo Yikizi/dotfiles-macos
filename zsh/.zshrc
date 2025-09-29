@@ -10,11 +10,16 @@ export PATH=$GOPATH/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export JAVA_HOME='/opt/homebrew/opt/openjdk@23/'
 
+# export PROMPT=" %U%h%u %(?.%F{green}%?%f.%F{red}%?%f) %F{blue}%n@%m%f %B%~%b %F{yellow}%D{%b%e %a} %T%f %F{#008000}$>%f "
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # history improvements
 setopt append_history inc_append_history share_history hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_ignore_dups # better history
 # setopt auto_menu menu_complete
+setopt auto_pushd
+setopt multios
+setopt pushd_ignore_dups
 setopt autocd
 setopt no_case_glob no_case_match
 setopt globdots
@@ -30,6 +35,33 @@ HISTDUP=erase
 
 source <(fzf --zsh)
 
+function append_pipe() {
+  BUFFER="${BUFFER} | "
+  CURSOR=${#BUFFER}
+}
+zle -N append_pipe
+bindkey '^P' append_pipe
+
+function command_not_found_handler {
+  echo "Did you mean any of these?"
+  brew search "$1"
+  return 127
+}
+
+function dstack() {
+  dirs -v
+  echo "Where do you want to go?"
+  read num
+  [[ -n "$num" ]] && cd +$num
+}
+alias ds=dstack
+
+function cdmenu() {
+    select dir in $(dirs -lp); do
+        [[ -n "$dir" ]] && cd "$dir" && break
+    done
+}
+
 # binds
 bindkey -v
 
@@ -42,13 +74,23 @@ function y() {
   # zle redisplay
 }
 
-zle -N y
-bindkey "^f" y
+source $HOME/.config/broot/launcher/bash/br
+
+function brr() {
+  br<$TTY
+}
+
+zle -N brr
+bindkey "^f" brr
 bindkey "^e" edit-command-line
 bindkey "^k" kill-line
 
 function set-alias {
   [[ $# -eq 2 ]] && echo "alias $1='$2'" >> $HOME/.alias
+}
+
+function mcd {
+  mkdir -p $1 && cd $1
 }
 
 function _git-status-widget {
@@ -139,8 +181,6 @@ export PATH=$HOME/.opencode/bin:$PATH
 
 source $HOME/.config/broot/launcher/bash/br
 
-alias claude="$HOME/.claude/local/claude"
-
 # bit
 case ":$PATH:" in
   *":$HOME/bin:"*) ;;
@@ -150,3 +190,12 @@ esac
 
 # opencode
 export PATH=$HOME/.opencode/bin:$PATH
+export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
+export ZEPHYR_TOOLCHAIN_PATH=/opt/homebrew
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
