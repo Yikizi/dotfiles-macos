@@ -43,8 +43,11 @@ zle -N append_pipe
 bindkey '^P' append_pipe
 
 function command_not_found_handler {
+  # Skip in non-interactive shells (fixes Claude Code spurious triggers)
+  [[ ! -o interactive ]] && return 127
+
   echo "Did you mean any of these?"
-  brew search "$1"
+  brew search "$1" 2>/dev/null
   return 127
 }
 
@@ -181,6 +184,8 @@ export PATH=$HOME/.opencode/bin:$PATH
 
 source $HOME/.config/broot/launcher/bash/br
 
+# alias claude="$HOME/.claude/local/claude"
+
 # bit
 case ":$PATH:" in
   *":$HOME/bin:"*) ;;
@@ -199,3 +204,31 @@ export ZEPHYR_TOOLCHAIN_PATH=/opt/homebrew
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+function new-kaver-hw () {
+  glab repo create -s "icd0022-25f-$1"
+  glab api -X POST "/projects/taltech%2Ficd0022-25f-$1/members" -f user_id=$GITLAB_USER_KAVER1 -f access_level=20
+  glab api -X POST "/projects/taltech%2Ficd0022-25f-$1/members" -f user_id=$GITLAB_USER_KAVER2 -f access_level=20
+  glab repo clone "icd0022-25f-$1" "taltech/icd0022-25f-$1"
+  cp $HOME/readme-base.md "$HOME/taltech/icd0022-25f-$1/README.md"
+  git -C "$HOME/taltech/icd0022-25f-$1" add -A
+  git -C "$HOME/taltech/icd0022-25f-$1" commit -m "init with readme"
+  git -C "$HOME/taltech/icd0022-25f-$1" push
+}
+
+export PATH=$PATH:/Users/mattias/.spicetify
+
+function qp {
+  claude --dangerously-skip-permissions --mcp-config $HOME/sheets-agent.json -p "$*" --append-system-prompt "$SHEET_ID_PYTHON is the google sheet id for MY python course point tracking table - use the sheet called PUNKTITABEL with properly formatted id inside quotes. You are a useful assistant who helps keep the table up to date by adding things that I tell you. $SHEET_ID_ATTENDANCE - this is the SHARED google sheet where to mark attendance, ONLY modify rows with my name $MY_FULL_NAME - row $MY_SHEET_ROW ONLY in sheet called Tundides käimine, always use the correct date and time. ONLY allowed to modify sheets PUNKTITABEL and Tundides käimine as necessary, one at a time. All times when I mentioned I helped somebody that goes into MY table in sheet PUNKTITABEL. NEVER overwrite a row that already contains data in my PUNKTITABEL, always add helping a student on the next empty row. Current empty row is $(cat $HOME/.helper_row). Update the file $HOME/.helper_row after adding a new entry."
+}
+
+function cdr {
+  local dir=$(fd -d 5 ".git" | xargs -n1 dirname | fzf)
+  [[ -n "$dir" ]] && cd "$dir"
+}
+
+export PATH=$HOME/.cargo/bin:$PATH
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

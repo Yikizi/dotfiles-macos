@@ -116,7 +116,7 @@ alt-ctrl-s = 'split opposite'
 alt-ctrl-i = 'workspace --wrap-around prev'
 alt-ctrl-o = 'workspace --wrap-around next'
 alt-ctrl-q = 'close --quit-if-last-window'
-alt-ctrl-t = 'layout floating tiles'
+alt-ctrl-t = 'layout floating tiling'
 alt-ctrl-e = 'layout v_accordion'
 alt-ctrl-a = 'layout h_tiles'
 alt-ctrl-d = 'layout v_tiles'
@@ -178,7 +178,7 @@ alt-shift-tab = 'move-node-to-monitor --wrap-around next'
 alt-ctrl-shift-semicolon = 'mode service'
 
 # Marks mode - vim-style window marks (', like vim)
-alt-ctrl-quote = 'mode marks'
+# alt-ctrl-quote = 'mode marks'
 
 # Scratchpad mode - toggle hidden windows (.)
 alt-ctrl-period = 'mode scratchpad'
@@ -267,13 +267,25 @@ esc = 'mode main'
 alt-ctrl-period = 'mode main'
 
 # Generic scratchpad operations
-enter = ['exec-and-forget aerospace-scratchpad summon ".*"', 'mode main']  # Show first/top window
-tab = 'exec-and-forget aerospace-scratchpad next'                      # Cycle through (stay in mode)
-shift-tab = ['exec-and-forget aerospace-scratchpad next', 'mode main'] # Cycle and exit mode
+enter = [
+  'exec-and-forget aerospace-scratchpad summon ".*"',
+  'mode main',
+] # Show first/top window
+tab = 'exec-and-forget aerospace-scratchpad next' # Cycle through (stay in mode)
+shift-tab = [
+  'exec-and-forget aerospace-scratchpad next',
+  'mode main',
+] # Cycle and exit mode
 
 # Toggle specific apps by pattern
-t = ['exec-and-forget ~/.config/aerospace/scratchpad-toggle.sh iTerm2', 'mode main']
-q = ['exec-and-forget ~/.config/aerospace/scratchpad-toggle.sh qutebrowser', 'mode main']
+t = [
+  'exec-and-forget ~/.config/aerospace/scratchpad-toggle.sh iTerm2',
+  'mode main',
+]
+q = [
+  'exec-and-forget ~/.config/aerospace/scratchpad-toggle.sh qutebrowser',
+  'mode main',
+]
 f = ['exec-and-forget aerospace-scratchpad show Finder', 'mode main']
 n = ['exec-and-forget aerospace-scratchpad show Notes', 'mode main']
 s = ['exec-and-forget aerospace-scratchpad show Spotify', 'mode main']
@@ -282,11 +294,14 @@ o = ['exec-and-forget aerospace-scratchpad show Obsidian', 'mode main']
 m = ['exec-and-forget aerospace-scratchpad show Messages', 'mode main']
 
 # Send window back to scratchpad
-backspace = 'exec-and-forget aerospace-scratchpad move'           # Send focused back (stay in mode for more cycling)
-shift-backspace = ['exec-and-forget aerospace-scratchpad move', 'mode main']  # Send back and exit
+backspace = 'exec-and-forget aerospace-scratchpad move' # Send focused back (stay in mode for more cycling)
+shift-backspace = [
+  'exec-and-forget aerospace-scratchpad move',
+  'mode main',
+] # Send back and exit
 
 # Move all floating to scratchpad
-space = ['exec-and-forget aerospace-scratchpad move --all-floating', 'mode main']
+space = ['exec-and-forget aerospace-scratchpad move', 'mode main']
 
 # ============================================
 # Marks Mode (vim-style window marks)
@@ -401,3 +416,12 @@ run = "move-node-to-workspace 3"
 [[on-window-detected]]
 if.app-id = 'md.Obsidian'
 run = "move-node-to-workspace 4"
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = "move-node-to-workspace 6"
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = "move-node-to-workspace 8"
+[[on-window-detected]]
+if.app-id = 'com.carriez.rustdesk'
+run = "move-node-to-workspace 9"

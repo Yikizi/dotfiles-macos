@@ -1,4 +1,4 @@
-alias ls='eza --icons=always --color=always'
+alias ls='eza --icons=always --color=always --sort=extension --group-directories-first'
 alias lsl='eza --icons=always --color=always --hyperlink'
 alias v='nvim'
 alias sal='set-alias'
@@ -11,3 +11,4 @@ alias tpanes="tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_inde
 alias ae='aerospace'
 alias c='claude'
 alias lsr='ls --sort=accessed --reverse'
+alias bs='brew search'
