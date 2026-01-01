@@ -3,6 +3,17 @@ hs.loadSpoon("Hammerflow")
 -- iTerm Tab Picker
 local itermTabPicker = require("iterm-tab-picker")
 
+-- Notification Manager
+local notificationManager = require("notification-manager")
+
+-- Hyper key = cmd+alt+shift+ctrl
+local hyper = {"cmd", "alt", "shift", "ctrl"}
+
+-- Notification hotkeys (instant actions)
+hs.hotkey.bind(hyper, "n", notificationManager.clickLatest)              -- Hyper+N: click/open
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "n", notificationManager.dismissLatest)  -- Hyper+Shift+N workaround
+hs.hotkey.bind({"cmd", "alt", "shift"}, "n", notificationManager.show)          -- Hyper+Ctrl+N workaround
+
 -- Project picker using hs.chooser
 local projectAction = "term"
 
