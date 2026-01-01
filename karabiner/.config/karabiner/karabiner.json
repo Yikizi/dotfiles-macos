@@ -759,7 +759,7 @@
                                 "from": {
                                     "key_code": "quote",
                                     "modifiers": {
-                                        "mandatory": ["left_option"],
+                                        "mandatory": ["left_option", "left_control"],
                                         "optional": ["left_shift", "right_shift"]
                                     }
                                 },
