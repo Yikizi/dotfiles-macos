@@ -9,10 +9,10 @@ local notificationManager = require("notification-manager")
 -- Hyper key = cmd+alt+shift+ctrl
 local hyper = {"cmd", "alt", "shift", "ctrl"}
 
--- Notification hotkeys (instant actions)
-hs.hotkey.bind(hyper, "n", notificationManager.clickLatest)              -- Hyper+N: click/open
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "n", notificationManager.dismissLatest)  -- Hyper+Shift+N workaround
-hs.hotkey.bind({"cmd", "alt", "shift"}, "n", notificationManager.show)          -- Hyper+Ctrl+N workaround
+-- Notification hotkeys (all use Hyper + different keys)
+hs.hotkey.bind(hyper, "n", notificationManager.clickLatest)       -- Hyper+N: click/open notification
+hs.hotkey.bind(hyper, "m", notificationManager.dismissLatest)     -- Hyper+M: dismiss notification
+hs.hotkey.bind(hyper, "i", notificationManager.show)              -- Hyper+I: browse notifications (I for Inspect)
 
 -- Project picker using hs.chooser
 local projectAction = "term"
