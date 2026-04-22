@@ -135,10 +135,10 @@ alt-ctrl-k = 'focus up --boundaries-action wrap-around-all-monitors --boundaries
 alt-ctrl-l = 'focus right --boundaries-action wrap-around-all-monitors --boundaries all-monitors-outer-frame'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-alt-ctrl-shift-h = 'move left'
-alt-ctrl-shift-j = 'move down'
-alt-ctrl-shift-k = 'move up'
-alt-ctrl-shift-l = 'move right'
+alt-ctrl-shift-h = 'exec-and-forget /bin/bash -c "aerospace move left  --boundaries-action fail || aerospace move-node-to-monitor --focus-follows-window left"'
+alt-ctrl-shift-j = 'exec-and-forget /bin/bash -c "aerospace move down  --boundaries-action fail || aerospace move-node-to-monitor --focus-follows-window down"'
+alt-ctrl-shift-k = 'exec-and-forget /bin/bash -c "aerospace move up    --boundaries-action fail || aerospace move-node-to-monitor --focus-follows-window up"'
+alt-ctrl-shift-l = 'exec-and-forget /bin/bash -c "aerospace move right --boundaries-action fail || aerospace move-node-to-monitor --focus-follows-window right"'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-ctrl-minus = 'resize smart -50'
